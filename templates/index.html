@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CineCafe Kart Manager • Web 3.2 Mobile</title>
+  <link rel="stylesheet" href="/static/app.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <button class="sidebar-overlay" id="sidebarOverlay" aria-label="Fechar menu" tabindex="-1"></button>
+    <aside class="sidebar" id="sidebar">
+      <div class="brand-wrap brand-image-wrap">
+        <img class="sidebar-logo" src="/static/logo.svg" alt="CineCafe Kart Manager" />
+      </div>
+
+      <div class="sidebar-sep"></div>
+      <div class="nav-label">GESTÃO</div>
+      <nav class="nav">
+<button class="nav-item admin-only" data-view="groups"><span>⚑</span><span>Grupos</span></button>
+        <button class="nav-item active" data-view="dashboard">
+          <svg viewBox="0 0 24 24"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>
+          <span>Dashboard</span>
+        </button>
+        <button class="nav-item" data-view="calculator">
+          <svg viewBox="0 0 24 24"><path d="M5 3h14v18H5zM8 7h8M8 11h2m3 0h3M8 15h2m3 0h3"/></svg>
+          <span>Baterias</span>
+        </button>
+        <button class="nav-item" data-view="pilots">
+          <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2M9.5 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M17 11l2 2 4-4"/></svg>
+          <span>Pilotos</span>
+        </button>
+        <button class="nav-item" data-view="history">
+          <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5M12 7v5l3 2"/></svg>
+          <span>Resultados</span>
+        </button>
+        <button class="nav-item" data-view="notes">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16v14H8l-4 3zM8 9h8M8 13h6"/></svg>
+          <span>Notas do desenvolvedor</span>
+        </button>
+        <button class="nav-item" data-view="settings">
+          <svg viewBox="0 0 24 24"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M19.4 15a1.8 1.8 0 0 0 .36 2l.06.06-2.12 2.12-.06-.06a1.8 1.8 0 0 0-2-.36 1.8 1.8 0 0 0-1.1 1.65V20.5h-3v-.09a1.8 1.8 0 0 0-1.1-1.65 1.8 1.8 0 0 0-2 .36l-.06.06-2.12-2.12.06-.06a1.8 1.8 0 0 0 .36-2 1.8 1.8 0 0 0-1.65-1.1H5v-3h.09a1.8 1.8 0 0 0 1.65-1.1 1.8 1.8 0 0 0-.36-2l-.06-.06L8.44 5.6l.06.06a1.8 1.8 0 0 0 2 .36A1.8 1.8 0 0 0 11.6 4.4V4.3h3v.1A1.8 1.8 0 0 0 15.7 6a1.8 1.8 0 0 0 2-.36l.06-.06 2.12 2.12-.06.06a1.8 1.8 0 0 0-.36 2 1.8 1.8 0 0 0 1.65 1.1h.09v3h-.09A1.8 1.8 0 0 0 19.4 15z"/></svg>
+          <span>Configurações</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="brand-phrase">GESTÃO QUE ACELERA<br>O KARTISMO</div>
+        <div class="version">CineCafe • WEB 3.2 MOBILE</div>
+      </div>
+    </aside>
+
+    <section class="workspace">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu" id="mobileMenu">☰</button>
+          <div>
+            <div class="eyebrow">CINECAFE KART MANAGER</div>
+            <h1 id="pageTitle">Dashboard</h1>
+          </div>
+        </div>
+        <div class="topbar-right">
+          <div class="stage-chip">
+            <span class="stage-dot"></span>
+            <div><small>ETAPA ATUAL</small><strong id="topStage">Carregando...</strong></div>
+          </div>
+          <button class="btn ghost" id="logout" title="Trocar pessoa">Sair</button><div class="avatar" id="userAvatar">CC</div>
+        </div>
+      </header>
+
+      <main class="content">
+        <!-- DASHBOARD -->
+        <section class="view active" id="view-dashboard">
+          <div class="hero-card">
+            <div class="hero-lines" aria-hidden="true"></div>
+            <div class="hero-content">
+              <div class="kicker">MAIS QUE CORRIDAS. RESULTADOS.</div>
+              <h2 id="heroStage">CineCafe Kart Manager</h2>
+              <p id="heroMeta">Organização, performance e precisão em cada bateria.</p>
+              <div class="hero-actions">
+                <button class="btn primary" data-go="calculator">Nova bateria <span>→</span></button>
+                <button class="btn ghost" data-go="history">Ver resultados</button>
+              </div>
+            </div>
+            <div class="hero-badge">
+              <span>PRECISÃO</span><span>PERFORMANCE</span><span>COMPETIÇÃO</span>
+            </div>
+          </div>
+
+          <div class="stats-grid">
+            <article class="stat-card accent-red">
+              <div class="stat-icon">01</div><div><span>PILOTOS</span><strong id="statPilots">—</strong><small>cadastrados</small></div>
+            </article>
+            <article class="stat-card accent-gold">
+              <div class="stat-icon">02</div><div><span>RESULTADOS</span><strong id="statResults">—</strong><small>baterias salvas</small></div>
+            </article>
+            <article class="stat-card accent-white">
+              <div class="stat-icon">03</div><div><span>CATEGORIAS</span><strong id="statCategories">—</strong><small>no campeonato</small></div>
+            </article>
+            <article class="stat-card accent-green">
+              <div class="stat-icon">04</div><div><span>STATUS</span><strong id="statStatus">—</strong><small>etapa atual</small></div>
+            </article>
+          </div>
+
+          <div class="media-grid">
+<article class="panel"><div class="panel-head"><div><span class="section-label gold">KARTÓDROMO DOS INGLESES</span><h3>Conheça o traçado</h3></div><span class="status-pill">TRAÇADO DA ETAPA</span></div><video id="trackVideo" controls playsinline preload="metadata" src="/static/tracado.mp4"></video></article>
+<article class="panel"><div class="panel-head"><div><span class="section-label gold">CONDIÇÕES DA PISTA</span><h3>Meteorologia</h3></div><button id="refreshWeather" class="btn ghost small-btn">Atualizar</button></div><div id="weather" class="weather-content">Consultando condições…</div></article>
+</div><div class="dashboard-grid">
+            <article class="panel standings-panel">
+              <div class="panel-head">
+                <div><span class="section-label">CAMPEONATO</span><h3>Classificação acumulada</h3></div>
+                <div class="segmented" id="standingsTabs"></div>
+              </div>
+              <p class="muted notice">Parcial, sem descarte: o saldo anterior não contém o histórico por etapa necessário ao descarte regulamentar.</p><div class="table-wrap compact">
+                <table class="standings-table">
+                  <thead><tr><th>#</th><th>Piloto</th><th class="num">Pontos</th></tr></thead>
+                  <tbody id="standingsBody"></tbody>
+                </table>
+              </div>
+            </article>
+
+            <article class="panel upcoming-panel">
+              <div class="panel-head"><div><span class="section-label">ETAPA</span><h3>Programação</h3></div><span class="status-pill neutral" id="scheduleCount">0 sessões</span></div>
+              <div id="scheduleList" class="schedule-list"></div>
+            </article>
+          </div>
+        </section>
+
+<section class="view" id="view-groups"><div class="page-intro"><div><span class="section-label">ORGANIZAÇÃO</span><h2>Grupos da etapa</h2><p>Marque os participantes. Salvar move o piloto para o grupo escolhido.</p></div></div><article class="panel settings-card"><div class="control-card"><select id="groupEvent"></select><select id="groupCategory"></select><select id="groupName"></select></div><div id="groupCount" class="notice"></div><div id="groupPicker" class="group-picker"></div><button class="btn primary" id="saveGroup">Salvar grupo</button><p class="muted">Referência: 11 pilotos por grupo. O regulamento permite ajustar a quantidade. Após salvar baterias, a organização da categoria fica protegida.</p></article></section>
+        <!-- CALCULATOR -->
+        <section class="view" id="view-calculator">
+          <div class="page-intro">
+            <div><span class="section-label">BATERIA</span><h2>Calculadora de pontos</h2><p>Monte a bateria, lance o resultado e salve no histórico do evento.</p></div>
+            <span class="status-pill live"><i></i> PRONTO PARA LANÇAR</span>
+          </div>
+
+          <div class="control-card">
+            <div class="field"><label>Categoria</label><select id="heatCategory"></select></div>
+            <div class="field small"><label>Grupo</label><select id="heatGroup"></select></div>
+            <div class="field"><label>Corrida</label><select id="heatRace"><option value="RACE1">Corrida 1</option><option value="RACE2">Corrida 2</option><option value="SUPER_POLE">Super Pole</option></select></div>
+            <div class="field wide"><label>Evento</label><select id="heatEvent"></select></div>
+            <div class="field wide"><label>Identificação</label><input id="heatTitle" /></div>
+            <div class="field"><label>DNF</label><select id="dnfRule"><option>Zero pontos</option><option>Pontuar posição</option></select></div>
+          </div>
+
+          <p class="notice muted">Posição = classificação oficial após punições em tempo. DNF/DNS exigem decisão da direção. Informe melhor volta em segundos para desempate.</p><div class="heat-layout">
+            <article class="panel pilot-picker">
+              <div class="panel-head stacked"><div><span class="section-label gold">PILOTOS DISPONÍVEIS</span><h3>Selecionar pilotos</h3></div><span class="counter" id="availableCount">0</span></div>
+              <div class="search-box"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input id="pilotSearch" placeholder="Buscar piloto..." /></div>
+              <div class="pilot-list" id="pilotList"></div>
+              <button class="btn secondary full" id="newPilotBtn">+ Novo piloto</button>
+            </article>
+
+            <article class="panel heat-table-panel">
+              <div class="panel-head">
+                <div><span class="section-label">RESULTADO DA BATERIA</span><h3 id="heatHeading">90 KG • Grupo A • Corrida 1</h3></div>
+                <button class="btn ghost small-btn" id="clearHeat">Limpar bateria</button>
+              </div>
+              <div class="table-wrap heat-table-wrap">
+                <table class="result-table">
+                  <thead><tr><th>#</th><th>Piloto</th><th>Situação</th><th>MV</th><th>Pun.</th><th class="num">Pontos</th><th></th></tr></thead>
+                  <tbody id="heatBody"></tbody>
+                </table>
+                <div class="empty-state" id="heatEmpty">
+                  <div class="empty-flag">⚑</div><strong>Nenhum piloto incluído</strong><span>Escolha os pilotos na lista ao lado para montar a bateria.</span>
+                </div>
+              </div>
+              <div class="action-bar">
+                <div class="action-left"><button class="btn primary" id="saveHeat">Salvar resultado</button><button class="btn secondary" id="calcHeat">Calcular</button></div>
+                <div class="action-right"><button class="btn outline-gold" id="pdfHeat">Gerar PDF</button><button class="btn ghost" id="csvHeat">Exportar CSV</button></div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- PILOTS -->
+        <section class="view" id="view-pilots">
+          <div class="page-intro">
+            <div><span class="section-label">CADASTRO</span><h2>Pilotos</h2><p>Base compartilhada de participantes do campeonato.</p></div>
+            <button class="btn primary" id="addPilotTop">+ Cadastrar piloto</button>
+          </div>
+          <article class="panel">
+            <div class="toolbar"><div class="search-box large"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input id="allPilotSearch" placeholder="Buscar por nome..." /></div><select id="pilotCategoryFilter"><option value="">Todas as categorias</option></select></div>
+            <div class="table-wrap"><table class="pilots-table"><thead><tr><th>Piloto</th><th>Categorias</th><th>Status</th></tr></thead><tbody id="allPilotsBody"></tbody></table></div>
+          </article>
+        </section>
+
+        <!-- HISTORY -->
+        <section class="view" id="view-history">
+          <div class="page-intro">
+            <div><span class="section-label">HISTÓRICO</span><h2>Resultados salvos</h2><p>Reabra baterias, confira revisões e mantenha o histórico do evento.</p></div>
+            <button class="btn primary" data-go="calculator">Nova bateria</button>
+          </div>
+          <article class="panel">
+            <div class="toolbar"><button class="btn primary" id="consolidate">Consolidar etapa</button><select id="historyEvent"></select><span class="muted" id="historySummary">—</span></div>
+            <div class="table-wrap"><table class="history-table"><thead><tr><th>Bateria</th><th>Categoria</th><th>Grupo</th><th>Sessão</th><th>Pilotos</th><th>Salvo em</th><th></th></tr></thead><tbody id="historyBody"></tbody></table></div>
+          </article>
+        </section>
+
+<div id="summaryBox" class="panel settings-card" hidden></div>
+        <!-- NOTES -->
+        <section class="view" id="view-notes">
+          <div class="page-intro"><div><span class="section-label">DESENVOLVIMENTO</span><h2>Notas do desenvolvedor</h2><p>Erros, melhorias e ideias do software. Notas globais, preservadas entre etapas.</p></div></div>
+          <div class="notes-grid">
+            <article class="panel note-editor"><span class="section-label gold">NOVA OBSERVAÇÃO</span><textarea id="noteText" placeholder="Descreva o erro ou a melhoria desejada..."></textarea><button class="btn primary" id="saveNote">Salvar observação</button></article>
+            <article class="panel"><div class="panel-head"><div><span class="section-label">HISTÓRICO</span><h3>Observações registradas</h3></div></div><div id="notesList" class="notes-list"></div></article>
+          </div>
+        </section>
+
+        <!-- SETTINGS -->
+        <section class="view" id="view-settings">
+          <div class="page-intro"><div><span class="section-label">SISTEMA</span><h2>Configurações</h2><p>Dados da etapa e informações da versão web.</p></div></div>
+          <article class="panel settings-card"><h3>Regulamento 2026</h3><p>Grande Prêmio Cine Café de Kart Rental. Arquivo fornecido em 17/09/2026; sem número de revisão no documento.</p><a class="btn outline-gold" href="/regulamento" target="_blank">Abrir regulamento</a><button class="btn ghost" id="backup">Baixar backup</button><a class="btn ghost" href="/diagnostico" target="_blank">Diagnóstico</a><h3>Localização meteorológica</h3><p class="muted">Informe as coordenadas confirmadas do Kartódromo dos Ingleses (latitude e longitude decimais do Google Maps).</p><div class="control-card"><input id="latitude" type="number" step="any" placeholder="Latitude"><input id="longitude" type="number" step="any" placeholder="Longitude"><button class="btn secondary" id="saveLocation">Salvar localização</button></div></article><br><div class="settings-grid">
+            <article class="panel settings-card"><span class="section-label gold">ETAPA ATUAL</span><div class="form-stack"><div class="field"><label>Nome</label><input id="stageName" /></div><div class="field"><label>Data</label><input id="stageDate" /></div><div class="field"><label>Local</label><input id="stageLocation" /></div></div><button class="btn primary" id="saveStage">Salvar alterações</button> <button class="btn ghost" id="newStage">Criar nova etapa</button></article>
+            <article class="panel brand-card"><div class="mini-brand"><div class="wordmark"><span>Cine</span><strong>Cafe</strong></div><div class="product">KART MANAGER</div></div><div class="brand-details"><span>Versão</span><strong>Web 3.2 Mobile</strong><span>Interface</span><strong>Local • Browser</strong><span>Dados</span><strong id="dataDir">—</strong></div><p>O navegador é apenas a interface. O banco SQLite e a lógica de pontuação continuam locais no seu computador.</p></article>
+          </div>
+        </section>
+      </main>
+    </section>
+  </div>
+
+  <!-- result edit modal -->
+  <div class="modal-backdrop" id="resultModal">
+    <div class="modal">
+      <div class="modal-head"><div><span class="section-label gold">EDITAR RESULTADO</span><h3 id="modalPilotName">Piloto</h3></div><button class="icon-btn" data-close="resultModal">×</button></div>
+      <div class="modal-body">
+        <div class="field"><label>Situação</label><select id="modalStatus"><option value="FINISHED">Concluiu</option><option value="DNF">DNF • não concluiu</option><option value="DNS">DNS • não largou</option><option value="DSQ">DSQ • desclassificado</option></select></div>
+        <div class="field"><label>Posição</label><input id="modalPosition" type="number" min="1" /></div>
+        <div class="field"><label>Melhor volta (segundos, exemplo: 58.432)</label><input id="modalLap" type="number" min="0.001" step="0.001"></div><div class="field"><label>Punição em segundos (posição já corrigida)</label><input id="modalSeconds" type="number" min="0" step="5"></div><div class="field"><label>Decisão da direção / motivo da punição</label><input id="modalDecision" maxlength="500"></div><label class="check-row"><input type="checkbox" id="modalFast"><span>Melhor volta (+1 nas corridas)</span></label>
+        <label class="check-row"><input type="checkbox" id="modalPenalty"><span>Punição (−3 pontos)</span></label>
+      </div>
+      <div class="modal-actions"><button class="btn ghost" data-close="resultModal">Cancelar</button><button class="btn primary" id="confirmResult">Confirmar</button></div>
+    </div>
+  </div>
+
+  <!-- pilot modal -->
+  <div class="modal-backdrop" id="pilotModal">
+    <div class="modal small-modal">
+      <div class="modal-head"><div><span class="section-label gold">CADASTRO</span><h3>Novo piloto</h3></div><button class="icon-btn" data-close="pilotModal">×</button></div>
+      <div class="modal-body"><div class="field"><label>Nome completo</label><input id="newPilotName" /></div><div class="field"><label>Número</label><input id="pilotNumber" /></div><div class="field"><label>WhatsApp</label><input id="pilotWhatsapp" /></div><div class="field"><label>Cidade</label><input id="pilotCity" /></div><div class="field"><label>CPF</label><input id="pilotCpf" /></div><div class="field"><label>Estado</label><input id="pilotState" /></div><div class="field"><label>E-mail</label><input id="pilotEmail" /></div><div class="field"><label>Nascimento</label><input id="pilotBirth_date" /></div><div class="field"><label>Endereço</label><input id="pilotAddress" /></div><div class="field"><label>Contato de emergência</label><input id="pilotEmergency_name" /></div><div class="field"><label>Telefone de emergência</label><input id="pilotEmergency_phone" /></div><div class="field"><label>Notas do cadastro</label><input id="pilotNotes" /></div><div class="field"><label>Categorias (adicionar inscrição)</label><label><input type="checkbox" id="pilot90"> 90 KG</label><label><input type="checkbox" id="pilot110"> 110 KG</label></div></div>
+      <div class="modal-actions"><button class="btn ghost" data-close="pilotModal">Cancelar</button><button class="btn primary" id="createPilot">Cadastrar</button></div>
+    </div>
+  </div>
+
+
+  <nav class="mobile-bottom-nav" id="mobileBottomNav" aria-label="Navegação móvel">
+    <button class="mobile-nav-item active" data-go="dashboard" aria-label="Dashboard"><span class="mobile-nav-icon">⌂</span><span>Início</span></button>
+    <button class="mobile-nav-item admin-only" data-go="calculator" aria-label="Baterias"><span class="mobile-nav-icon">⚑</span><span>Baterias</span></button>
+    <button class="mobile-nav-item" data-go="history" aria-label="Resultados"><span class="mobile-nav-icon">≡</span><span>Resultados</span></button>
+    <button class="mobile-nav-item" type="button" id="mobileMore" aria-label="Abrir menu"><span class="mobile-nav-icon">☰</span><span>Menu</span></button>
+  </nav>
+
+  <div class="toast" id="toast"></div>
+  <div class="access-screen" id="accessScreen"><form id="accessForm" class="access-card"><img src="/static/logo.svg" alt="CineCafe Kart Manager"><span class="section-label gold">BEM-VINDO AO CAMPEONATO</span><h2>A pista conecta a gente.</h2><p>Como podemos chamar você?</p><div class="field"><label for="accessName">Seu nome</label><input id="accessName" required minlength="2" maxlength="100" autocomplete="name" placeholder="Nome e sobrenome"></div><details><summary>Sou organizador</summary><div class="field"><label for="accessKey">Chave do organizador</label><input id="accessKey" type="password" autocomplete="current-password"><small>Disponível na pasta data do computador que hospeda.</small></div></details><button class="btn primary full" type="submit">Entrar no campeonato →</button><p id="accessError" role="alert"></p><small>Seu nome e horário de acesso ficam registrados para a organização.</small></form></div>
+<script src="/static/app.js"></script><script src="/static/upgrade.js"></script>
+</body>
+</html>

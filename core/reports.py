@@ -13,18 +13,11 @@ from io import BytesIO
 from xml.sax.saxutils import escape
 from datetime import datetime
 from weather_visual import weather_image, font
-from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfbase.ttfonts import TTFont
-
-FONT_REGULAR="Helvetica"
-FONT_BOLD="Helvetica-Bold"
-try:
-    pdfmetrics.registerFont(TTFont("CCSans",font(12).path))
-    pdfmetrics.registerFont(TTFont("CCSansBold",font(12,True).path))
-    FONT_REGULAR="CCSans"
-    FONT_BOLD="CCSansBold"
-except (AttributeError,OSError):
-    pass
+# Use ReportLab built-in fonts for maximum compatibility on Linux/Railway.
+# Helvetica supports the Portuguese text used by the application and avoids
+# startup failures caused by invalid or unavailable external TTF files.
+FONT_REGULAR = "Helvetica"
+FONT_BOLD = "Helvetica-Bold"
 
 YELLOW = colors.HexColor("#F2C500")
 BLACK = colors.HexColor("#0B0B0D")
@@ -319,8 +312,17 @@ def _schedule_section(story,conn,stage_id):
     story.append(Spacer(1,4*mm))
 
 
+def _lap_text(value):
+    """Format a lap time stored in milliseconds, matching the web UI."""
+    if value is None:
+        return ""
+    try:
+        return f"{int(value) / 1000:.3f} s"
+    except (TypeError, ValueError):
+        return ""
+
+
 def combined_report(conn,stage_id,output,sections,active_only=True,include_weather=True):
-    from input_helpers import lap_text
     stage=db.stage_row(conn,stage_id);title,h2,small=_styles()
     doc=SimpleDocTemplate(output,pagesize=A4,rightMargin=14*mm,leftMargin=14*mm,topMargin=12*mm,bottomMargin=14*mm)
     story=[];_logo(story)
@@ -355,7 +357,7 @@ def combined_report(conn,stage_id,output,sections,active_only=True,include_weath
             story.append(Paragraph(escape(f"{session['category_name']} • Grupo {session['group_name']} • {SESSION_LABEL[session['session_type']]} • {session['status']}"),h2))
             data=[['Piloto','Pos.','Melhor tempo','MV','Punição','DSQ','Pts']]
             for r in sorted(db.session_grid_rows(conn,session['id']),key=lambda r:(r['position'] is None,r['position'] or 999,r['name'])):
-                data.append([r['name'],r['position'] or '—',lap_text(r['best_lap_ms']) or '—','Sim' if r['fastest_manual'] else '', '-3' if r['penalty'] else '', 'Sim' if r['dq'] else '',f"{r['points']:.0f}"])
+                data.append([r['name'],r['position'] or '—',_lap_text(r['best_lap_ms']) or '—','Sim' if r['fastest_manual'] else '', '-3' if r['penalty'] else '', 'Sim' if r['dq'] else '',f"{r['points']:.0f}"])
             story.append(_table(data,[66*mm,13*mm,33*mm,13*mm,18*mm,13*mm,14*mm],8))
     def footer(canvas,doc):
         canvas.saveState();canvas.setFont(FONT_REGULAR,8);canvas.drawRightString(195*mm,8*mm,f'Página {doc.page}');canvas.restoreState()
